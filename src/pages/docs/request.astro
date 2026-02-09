@@ -1,0 +1,92 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Request Object" active="/docs/request/">
+    <h1>Request Object</h1>
+    <p>
+        Inside route handlers, a <code>req</code> object is automatically available.
+        It provides information about the incoming HTTP request.
+    </p>
+
+    <h2>Properties</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Property</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>req.path</code></td>
+                <td>String</td>
+                <td>The request URI path, e.g. <code>"/hello"</code></td>
+            </tr>
+            <tr>
+                <td><code>req.method</code></td>
+                <td>String</td>
+                <td>The HTTP method, e.g. <code>"GET"</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Usage</h2>
+    <pre><code><span class="tk">server</span> <span class="tn">8080</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/info"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"Path: "</span> + <span class="tv">req</span>.<span class="tv">path</span>
+    &#125;
+
+    <span class="tk">get</span> <span class="ts">"/method"</span> &#123;
+        <span class="tk">respond</span> <span class="tv">req</span>.<span class="tv">method</span>
+    &#125;
+&#125;</code></pre>
+
+    <p>
+        Requesting <code>/info</code> returns <code>Path: /info</code>.
+        Requesting <code>/method</code> returns <code>GET</code>.
+    </p>
+
+    <h2>Using req.path in responses</h2>
+    <p>
+        A common pattern is echoing the request path back in the response:
+    </p>
+    <pre><code><span class="tk">server</span> <span class="tn">8080</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/hello"</span> &#123;
+        <span class="tk">respond</span> <span class="tv">req</span>.<span class="tv">path</span>
+    &#125;
+&#125;</code></pre>
+    <p>This returns the string <code>/hello</code>.</p>
+
+    <h2>Limitations</h2>
+    <p>
+        The <code>req</code> object currently only exposes <code>path</code> and
+        <code>method</code>. The following are not available:
+    </p>
+    <ul>
+        <li>Request headers</li>
+        <li>Query parameters</li>
+        <li>Request body</li>
+        <li>Cookies</li>
+    </ul>
+
+    <div class="note">
+        <p>
+            <strong>Note:</strong> <code>req</code> is only available inside route
+            handler blocks. Referencing it outside a <code>get</code> block will
+            result in <code>None</code>.
+        </p>
+    </div>
+
+    <div class="page-nav">
+        <a href="/docs/routes/">
+            <span class="label">Previous</span>
+            Routes
+        </a>
+        <a href="/docs/builtins/" class="next">
+            <span class="label">Next</span>
+            Built-in Functions
+        </a>
+    </div>
+</DocsLayout>

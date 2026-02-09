@@ -1,0 +1,88 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Getting Started" active="/docs/getting-started/">
+    <h1>Getting Started</h1>
+    <p>
+        Install Harbor and run your first program in under a minute.
+    </p>
+
+    <h2>Prerequisites</h2>
+    <p>
+        Harbor is built with Rust. You'll need the Rust toolchain installed to
+        compile Harbor from source.
+    </p>
+    <ul>
+        <li><a href="https://rustup.rs">Rust</a> (1.70 or later)</li>
+        <li>Git</li>
+    </ul>
+
+    <h2>Installation</h2>
+    <p>Clone the repository and build with Cargo:</p>
+    <pre><code>git clone https://github.com/gradykorchinski-ship-it/Harbor.git
+cd Harbor
+cargo build --release</code></pre>
+
+    <p>
+        The compiled binary will be at <code>target/release/harbor</code>. You can
+        move it to a directory on your PATH:
+    </p>
+    <pre><code>cp target/release/harbor ~/.local/bin/</code></pre>
+
+    <h2>Your first program</h2>
+    <p>Create a file called <code>hello.hb</code>:</p>
+    <pre><code><span class="tv">greeting</span> = <span class="ts">"Hello from Harbor!"</span>
+<span class="tk">print</span>(<span class="tv">greeting</span>)</code></pre>
+
+    <p>Run it:</p>
+    <pre><code>cargo run</code></pre>
+
+    <div class="note">
+        <p>
+            <strong>Note:</strong> Harbor currently reads from <code>main.hb</code>
+            in the project root by default. Rename your file to <code>main.hb</code>
+            or check the source for the expected file path.
+        </p>
+    </div>
+
+    <p>You should see:</p>
+    <pre><code>Hello from Harbor!</code></pre>
+
+    <h2>Your first server</h2>
+    <p>Replace the contents of <code>main.hb</code> with:</p>
+    <pre><code><span class="tk">server</span> <span class="tn">8080</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/hello"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"Hello, world!"</span>
+    &#125;
+&#125;</code></pre>
+
+    <p>Run the program:</p>
+    <pre><code>cargo run</code></pre>
+
+    <p>You'll see:</p>
+    <pre><code>Harbor server running on http://127.0.0.1:8080</code></pre>
+
+    <p>Open <code>http://127.0.0.1:8080/hello</code> in your browser or use curl:</p>
+    <pre><code>curl http://127.0.0.1:8080/hello</code></pre>
+
+    <p>The response will be:</p>
+    <pre><code>Hello, world!</code></pre>
+
+    <h2>Project structure</h2>
+    <p>A Harbor project is a single <code>.hb</code> file. There's no package manager, no configuration, and no directory structure to set up.</p>
+    <pre><code>my-project/
+  main.hb</code></pre>
+    <p>That's it.</p>
+
+    <div class="page-nav">
+        <a href="/docs/">
+            <span class="label">Previous</span>
+            Overview
+        </a>
+        <a href="/docs/variables/" class="next">
+            <span class="label">Next</span>
+            Variables & Types
+        </a>
+    </div>
+</DocsLayout>

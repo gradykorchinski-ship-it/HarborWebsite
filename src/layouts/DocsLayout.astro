@@ -1,0 +1,421 @@
+---
+import "../styles/global.css";
+
+interface Props {
+    title: string;
+    active?: string;
+}
+
+const { title, active } = Astro.props;
+
+const sidebar = [
+    { label: "Overview", href: "/docs/" },
+    { label: "Getting Started", href: "/docs/getting-started/" },
+    { heading: "Language" },
+    { label: "Variables & Types", href: "/docs/variables/" },
+    { label: "Operators", href: "/docs/operators/" },
+    { label: "Functions", href: "/docs/functions/" },
+    { heading: "Server" },
+    { label: "Server Blocks", href: "/docs/server/" },
+    { label: "Routes", href: "/docs/routes/" },
+    { label: "Request Object", href: "/docs/request/" },
+    { heading: "Reference" },
+    { label: "Built-in Functions", href: "/docs/builtins/" },
+    { label: "Examples", href: "/docs/examples/" },
+];
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href="/harbor.png" />
+        <meta name="theme-color" content="#1b1b1f" />
+        <title>{title} — Harbor Docs</title>
+    </head>
+    <body>
+        <nav class="docs-nav">
+            <div class="docs-nav-inner">
+                <a href="/" class="docs-nav-logo">
+                    <img src="/harbor.png" alt="" class="docs-nav-icon" />
+                    Harbor
+                </a>
+                <span class="docs-nav-sep">/</span>
+                <a href="/docs/" class="docs-nav-label">Docs</a>
+                <div class="docs-nav-right">
+                    <a
+                        href="https://github.com/gradykorchinski-ship-it/Harbor"
+                        class="docs-nav-gh"
+                        aria-label="GitHub"
+                    >
+                        <svg
+                            width="20"
+                            height="20"
+                            viewBox="0 0 16 16"
+                            fill="currentColor"
+                            ><path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                            ></path></svg
+                        >
+                    </a>
+                </div>
+            </div>
+        </nav>
+
+        <div class="docs-layout">
+            <aside class="docs-sidebar">
+                <nav class="sidebar-nav">
+                    {
+                        sidebar.map((item) =>
+                            "heading" in item ? (
+                                <div class="sidebar-heading">
+                                    {item.heading}
+                                </div>
+                            ) : (
+                                <a
+                                    href={item.href}
+                                    class:list={[
+                                        "sidebar-link",
+                                        { active: active === item.href },
+                                    ]}
+                                >
+                                    {item.label}
+                                </a>
+                            ),
+                        )
+                    }
+                </nav>
+            </aside>
+            <main class="docs-content">
+                <article class="docs-article">
+                    <slot />
+                </article>
+            </main>
+        </div>
+
+        <style is:global>
+            .docs-nav {
+                position: sticky;
+                top: 0;
+                z-index: 100;
+                background: var(--bg);
+                border-bottom: 1px solid var(--border);
+                height: 80px;
+            }
+
+            .docs-nav-inner {
+                max-width: 100%;
+                margin: 0 auto;
+                padding: 0 24px;
+                display: flex;
+                align-items: center;
+                height: 100%;
+                gap: 8px;
+            }
+
+            .docs-nav-logo {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: 600;
+                font-size: 15px;
+                color: var(--text);
+            }
+
+            .docs-nav-icon {
+                height: 48px;
+                width: auto;
+            }
+
+            .docs-nav-sep {
+                color: var(--text-tertiary);
+                font-size: 14px;
+            }
+
+            .docs-nav-label {
+                font-size: 14px;
+                color: var(--text-secondary);
+            }
+
+            .docs-nav-label:hover {
+                color: var(--text);
+            }
+
+            .docs-nav-right {
+                margin-left: auto;
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+
+            .docs-nav-gh {
+                color: var(--text-secondary);
+                display: flex;
+                transition: color 120ms;
+            }
+
+            .docs-nav-gh:hover {
+                color: var(--text);
+            }
+
+            .docs-layout {
+                display: grid;
+                grid-template-columns: 240px 1fr;
+                min-height: calc(100vh - 80px);
+            }
+
+            .docs-sidebar {
+                border-right: 1px solid var(--border);
+                padding: 24px 0;
+                position: sticky;
+                top: 80px;
+                height: calc(100vh - 80px);
+                overflow-y: auto;
+            }
+
+            .sidebar-nav {
+                display: flex;
+                flex-direction: column;
+                padding: 0 12px;
+            }
+
+            .sidebar-heading {
+                font-size: 11px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                color: var(--text-tertiary);
+                padding: 20px 12px 6px;
+            }
+
+            .sidebar-heading:first-child {
+                padding-top: 0;
+            }
+
+            .sidebar-link {
+                font-size: 14px;
+                color: var(--text-secondary);
+                padding: 5px 12px;
+                border-radius: var(--radius);
+                transition:
+                    color 120ms,
+                    background 120ms;
+            }
+
+            .sidebar-link:hover {
+                color: var(--text);
+                background: var(--surface);
+            }
+
+            .sidebar-link.active {
+                color: var(--text);
+                background: var(--surface);
+                font-weight: 500;
+            }
+
+            .docs-content {
+                padding: 48px 64px;
+                max-width: 780px;
+            }
+
+            /* Article typography */
+            .docs-article h1 {
+                font-size: 2rem;
+                margin-bottom: 8px;
+            }
+
+            .docs-article h2 {
+                font-size: 1.375rem;
+                margin-top: 48px;
+                margin-bottom: 16px;
+                padding-top: 24px;
+                border-top: 1px solid var(--border);
+            }
+
+            .docs-article h2:first-of-type {
+                border-top: none;
+                padding-top: 0;
+            }
+
+            .docs-article h3 {
+                font-size: 1.0625rem;
+                margin-top: 32px;
+                margin-bottom: 12px;
+            }
+
+            .docs-article p {
+                margin-bottom: 16px;
+                line-height: 1.7;
+                font-size: 15px;
+            }
+
+            .docs-article > p:first-of-type {
+                font-size: 16px;
+                color: var(--text-secondary);
+                margin-bottom: 32px;
+            }
+
+            .docs-article ul,
+            .docs-article ol {
+                margin-bottom: 16px;
+                padding-left: 24px;
+            }
+
+            .docs-article li {
+                margin-bottom: 6px;
+                font-size: 15px;
+                line-height: 1.6;
+                color: var(--text-secondary);
+            }
+
+            .docs-article pre {
+                background: var(--bg-secondary);
+                border: 1px solid var(--border);
+                border-radius: var(--radius-lg);
+                padding: 16px 20px;
+                margin-bottom: 20px;
+                font-size: 14px;
+            }
+
+            .docs-article code {
+                font-size: 13px;
+            }
+
+            .docs-article p code,
+            .docs-article li code {
+                padding: 1px 5px;
+                background: var(--surface);
+                border-radius: 3px;
+                color: var(--text);
+                font-size: 13.5px;
+            }
+
+            .docs-article table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+                font-size: 14px;
+            }
+
+            .docs-article th {
+                text-align: left;
+                padding: 8px 12px;
+                font-weight: 600;
+                font-size: 13px;
+                color: var(--text-secondary);
+                border-bottom: 1px solid var(--border-hover);
+            }
+
+            .docs-article td {
+                padding: 8px 12px;
+                border-bottom: 1px solid var(--border);
+                color: var(--text-secondary);
+            }
+
+            .docs-article td code {
+                font-size: 13px;
+                padding: 1px 4px;
+                background: var(--surface);
+                border-radius: 3px;
+                color: var(--text);
+            }
+
+            .docs-article .note {
+                padding: 16px 20px;
+                background: var(--bg-secondary);
+                border-left: 3px solid var(--accent);
+                border-radius: 0 var(--radius) var(--radius) 0;
+                margin-bottom: 20px;
+            }
+
+            .docs-article .note p {
+                margin: 0;
+                color: var(--text-secondary);
+                font-size: 14px;
+            }
+
+            .docs-article .note strong {
+                color: var(--text);
+            }
+
+            .docs-article hr {
+                border: none;
+                border-top: 1px solid var(--border);
+                margin: 40px 0;
+            }
+
+            .docs-article a {
+                color: var(--accent);
+                text-decoration: none;
+            }
+
+            .docs-article a:hover {
+                text-decoration: underline;
+            }
+
+            .tk {
+                color: #c586c0;
+            }
+            .ts {
+                color: #ce9178;
+            }
+            .tn {
+                color: #b5cea8;
+            }
+            .tc {
+                color: #6a9955;
+                font-style: italic;
+            }
+            .tv {
+                color: #9cdcfe;
+            }
+
+            /* Page nav at bottom */
+            .page-nav {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 64px;
+                padding-top: 24px;
+                border-top: 1px solid var(--border);
+                gap: 16px;
+            }
+
+            .page-nav a {
+                font-size: 14px;
+                color: var(--accent);
+                display: flex;
+                flex-direction: column;
+                gap: 2px;
+            }
+
+            .page-nav a:hover {
+                text-decoration: underline;
+            }
+
+            .page-nav .label {
+                font-size: 12px;
+                color: var(--text-tertiary);
+            }
+
+            .page-nav .next {
+                text-align: right;
+                margin-left: auto;
+            }
+
+            @media (max-width: 768px) {
+                .docs-layout {
+                    grid-template-columns: 1fr;
+                }
+
+                .docs-sidebar {
+                    display: none;
+                }
+
+                .docs-content {
+                    padding: 32px 24px;
+                }
+            }
+        </style>
+    </body>
+</html>

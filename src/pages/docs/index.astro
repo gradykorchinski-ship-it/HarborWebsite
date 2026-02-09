@@ -1,0 +1,93 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Overview" active="/docs/">
+    <h1>Harbor Documentation</h1>
+    <p>
+        Harbor is a simple, experimental programming language designed for building
+        HTTP servers. It's written in Rust and interprets <code>.hb</code> files directly.
+    </p>
+
+    <h2>What is Harbor?</h2>
+    <p>
+        Harbor provides a small set of focused primitives for creating HTTP servers
+        with minimal syntax. There's no build step, no configuration files, and
+        no dependency management. You write a <code>.hb</code> file and run it.
+    </p>
+
+    <pre><code><span class="tk">server</span> <span class="tn">8080</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/hello"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"Hello, world!"</span>
+    &#125;
+&#125;</code></pre>
+
+    <h2>Design goals</h2>
+    <ul>
+        <li>Readable, minimal syntax with no boilerplate</li>
+        <li>Server-oriented primitives built into the language</li>
+        <li>Async-first HTTP runtime (powered by Hyper + Tokio)</li>
+        <li>No external dependencies in the runtime</li>
+    </ul>
+
+    <h2>Current status</h2>
+    <p>
+        Harbor is in early development. The current version supports variables,
+        functions, string and number types, a single operator (<code>+</code>),
+        HTTP server blocks with GET routes, and the <code>req</code> object for
+        accessing request data.
+    </p>
+
+    <div class="note">
+        <p>
+            <strong>Note:</strong> Harbor is experimental. The language spec and
+            behavior may change between versions. See the
+            <a href="https://github.com/gradykorchinski-ship-it/Harbor">GitHub repository</a>
+            for the latest source.
+        </p>
+    </div>
+
+    <h2>Quick reference</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>Syntax</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Variable</td>
+                <td><code>x = 10</code></td>
+            </tr>
+            <tr>
+                <td>Function</td>
+                <td><code>fn name(a, b) &#123; ... &#125;</code></td>
+            </tr>
+            <tr>
+                <td>Print</td>
+                <td><code>print("hello")</code></td>
+            </tr>
+            <tr>
+                <td>Server</td>
+                <td><code>server 8080 &#123; ... &#125;</code></td>
+            </tr>
+            <tr>
+                <td>Route</td>
+                <td><code>get "/path" &#123; ... &#125;</code></td>
+            </tr>
+            <tr>
+                <td>Respond</td>
+                <td><code>respond expr</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-nav">
+        <div></div>
+        <a href="/docs/getting-started/" class="next">
+            <span class="label">Next</span>
+            Getting Started
+        </a>
+    </div>
+</DocsLayout>

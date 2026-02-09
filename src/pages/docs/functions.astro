@@ -1,0 +1,89 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Functions" active="/docs/functions/">
+    <h1>Functions</h1>
+    <p>
+        Functions in Harbor are defined with the <code>fn</code> keyword. They
+        support parameters and implicit return values.
+    </p>
+
+    <h2>Defining a function</h2>
+    <pre><code><span class="tk">fn</span> <span class="tv">add</span>(<span class="tv">a</span>, <span class="tv">b</span>) &#123;
+    <span class="tv">a</span> + <span class="tv">b</span>
+&#125;</code></pre>
+
+    <p>
+        A function definition starts with <code>fn</code>, followed by the
+        function name, a parameter list in parentheses, and a body in curly
+        braces.
+    </p>
+
+    <h2>Parameters</h2>
+    <p>
+        Parameters are comma-separated identifiers. They are untyped. A function
+        can have zero or more parameters.
+    </p>
+    <pre><code><span class="tk">fn</span> <span class="tv">greet</span>() &#123;
+    <span class="tk">print</span>(<span class="ts">"Hello!"</span>)
+&#125;
+
+<span class="tk">fn</span> <span class="tv">add</span>(<span class="tv">a</span>, <span class="tv">b</span>) &#123;
+    <span class="tv">a</span> + <span class="tv">b</span>
+&#125;</code></pre>
+
+    <h2>Return values</h2>
+    <p>
+        Functions do not use a <code>return</code> keyword. The last expression
+        evaluated in the function body is the return value.
+    </p>
+    <pre><code><span class="tk">fn</span> <span class="tv">double</span>(<span class="tv">n</span>) &#123;
+    <span class="tv">n</span> + <span class="tv">n</span>
+&#125;
+
+<span class="tv">result</span> = <span class="tv">double</span>(<span class="tn">5</span>)
+<span class="tk">print</span>(<span class="tv">result</span>)</code></pre>
+    <p>Output: <code>10</code></p>
+
+    <h2>Calling functions</h2>
+    <p>
+        Call a function by name with arguments in parentheses:
+    </p>
+    <pre><code><span class="tv">add</span>(<span class="tn">1</span>, <span class="tn">2</span>)
+<span class="tk">print</span>(<span class="tv">add</span>(<span class="tn">10</span>, <span class="tn">20</span>))
+<span class="tv">greet</span>()</code></pre>
+
+    <p>
+        Function calls can be used as expressions — their return value can be
+        assigned to a variable or passed as an argument.
+    </p>
+
+    <h2>Scope</h2>
+    <p>
+        Parameters are local to the function. Variables assigned inside a function
+        are also local. Functions themselves are stored globally and can be called
+        from anywhere after they're defined.
+    </p>
+
+    <pre><code><span class="tv">x</span> = <span class="tn">10</span>
+
+<span class="tk">fn</span> <span class="tv">example</span>() &#123;
+    <span class="tv">y</span> = <span class="tn">20</span>
+    <span class="tv">x</span> + <span class="tv">y</span>
+&#125;
+
+<span class="tk">print</span>(<span class="tv">example</span>())</code></pre>
+    <p>Output: <code>30</code></p>
+
+    <div class="page-nav">
+        <a href="/docs/operators/">
+            <span class="label">Previous</span>
+            Operators
+        </a>
+        <a href="/docs/server/" class="next">
+            <span class="label">Next</span>
+            Server Blocks
+        </a>
+    </div>
+</DocsLayout>

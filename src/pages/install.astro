@@ -1,0 +1,733 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Install — Harbor">
+    <nav class="nav">
+        <div class="container nav-inner">
+            <a href="/" class="nav-logo">
+                <img src="/harbor.png" alt="Harbor Logo" class="nav-icon" />
+            </a>
+            <div class="nav-links">
+                <a href="/#features">Features</a>
+                <a href="/#syntax">Syntax</a>
+                <a href="/docs/">Docs</a>
+                <a href="/install/">Install</a>
+            </div>
+            <div class="nav-actions">
+                <a
+                    href="https://github.com/gradykorchinski-ship-it/Harbor"
+                    class="nav-github"
+                    aria-label="GitHub"
+                >
+                    <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 16 16"
+                        fill="currentColor"
+                        ><path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"
+                        ></path></svg
+                    >
+                </a>
+                <a href="/#get-started" class="btn-primary">Get started</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container install-page">
+        <header class="hero">
+            <div class="hero-logo">
+                <img class="hero-img" src="/harbortext.png" alt="Harbor Logo" />
+            </div>
+            <h1>Install <span>Harbor</span></h1>
+            <p>Python-like language that compiles to zero-dependency Node.js</p>
+        </header>
+
+        <section class="install-section">
+            <div class="install-label">Quick install</div>
+
+            <div class="tabs">
+                <button class="tab active" data-tab="curl">curl</button>
+                <button class="tab" data-tab="wget">wget</button>
+                <button class="tab" data-tab="source">source</button>
+            </div>
+
+            <div id="tab-curl" class="tab-content active">
+                <div
+                    class="install-box"
+                    data-command="curl -sSL https://harbor.fluxlinux.xyz/install.sh | bash"
+                >
+                    <span class="prompt">$</span>
+                    <code
+                        >curl -sSL https://harbor.fluxlinux.xyz/install.sh |
+                        bash</code
+                    >
+                    <button class="copy-btn">copy</button>
+                </div>
+            </div>
+
+            <div id="tab-wget" class="tab-content">
+                <div
+                    class="install-box"
+                    data-command="wget -qO- https://harbor.fluxlinux.xyz/install.sh | bash"
+                >
+                    <span class="prompt">$</span>
+                    <code
+                        >wget -qO- https://harbor.fluxlinux.xyz/install.sh |
+                        bash</code
+                    >
+                    <button class="copy-btn">copy</button>
+                </div>
+            </div>
+
+            <div id="tab-source" class="tab-content">
+                <div
+                    class="install-box"
+                    data-command="git clone https://github.com/stormyy00/harbor.git && cd harbor && bash install.sh"
+                >
+                    <span class="prompt">$</span>
+                    <code
+                        >git clone https://github.com/stormyy00/harbor.git && cd
+                        harbor && bash install.sh</code
+                    >
+                    <button class="copy-btn">copy</button>
+                </div>
+            </div>
+
+            <details class="alt-methods">
+                <summary>Advanced options</summary>
+                <div class="alt-grid">
+                    <div class="alt-box">
+                        <div>
+                            <div class="label">Specific version</div>
+                            <code
+                                >HARBOR_VERSION=2.0.0 curl -sSL
+                                https://harbor.fluxlinux.xyz/install.sh | bash</code
+                            >
+                        </div>
+                    </div>
+                    <div class="alt-box">
+                        <div>
+                            <div class="label">Custom directory</div>
+                            <code
+                                >HARBOR_INSTALL_DIR=/usr/local/bin curl -sSL
+                                https://harbor.fluxlinux.xyz/install.sh | bash</code
+                            >
+                        </div>
+                    </div>
+                    <div class="alt-box">
+                        <div>
+                            <div class="label">Uninstall</div>
+                            <code
+                                >curl -sSL
+                                https://harbor.fluxlinux.xyz/install.sh | bash
+                                -s -- --uninstall</code
+                            >
+                        </div>
+                    </div>
+                </div>
+            </details>
+        </section>
+
+        <section class="features-grid">
+            <div class="feature-card-alt">
+                <div class="icon">⚡</div>
+                <h3>Zero Dependencies</h3>
+                <p>Compiles to vanilla Node.js — no runtime, no packages</p>
+            </div>
+            <div class="feature-card-alt">
+                <div class="icon">🐍</div>
+                <h3>Python Syntax</h3>
+                <p>If you know Python, you already know Harbor</p>
+            </div>
+            <div class="feature-card-alt">
+                <div class="icon">🌐</div>
+                <h3>Built-in Server</h3>
+                <p>Define HTTP APIs in just a few lines</p>
+            </div>
+            <div class="feature-card-alt">
+                <div class="icon">📦</div>
+                <h3>Modules</h3>
+                <p>Import, export, and organize code with ease</p>
+            </div>
+        </section>
+
+        <section class="code-preview">
+            <h2>What it looks like</h2>
+            <div class="code-block-fancy">
+                <div class="code-header-fancy">
+                    <span class="dot r"></span>
+                    <span class="dot y"></span>
+                    <span class="dot g"></span>
+                    &nbsp; hello.hb
+                </div>
+                <pre><code><span class="tc"># Variables & f-strings</span>
+<span class="tv">name</span> = <span class="ts">"Harbor"</span>
+<span class="tk">print</span> <span class="ts">f"Welcome to &#123;name&#125;!"</span>
+
+<span class="tc"># Functions</span>
+<span class="tk">def</span> <span class="tn">greet</span>(who):
+    <span class="tk">print</span> <span class="ts">f"Hello, &#123;who&#125;!"</span>
+
+<span class="tn">greet</span>(<span class="ts">"World"</span>)
+
+<span class="tc"># Classes — no 'new', no 'self' in params</span>
+<span class="tk">class</span> <span class="tn">Dog</span>:
+    <span class="tk">def</span> <span class="tn">init</span>(name, breed):
+        <span class="tk">self</span>.name = name
+        <span class="tk">self</span>.breed = breed
+
+    <span class="tk">def</span> <span class="tn">speak</span>():
+        <span class="tk">print</span> <span class="ts">f"&#123;self.name&#125; says Woof!"</span>
+
+<span class="tv">rex</span> = <span class="tn">Dog</span>(<span class="ts">"Rex"</span>, <span class="ts">"Lab"</span>)
+<span class="tv">rex</span>.<span class="tn">speak</span>()
+
+<span class="tc"># Built-in web server</span>
+<span class="tk">server</span> <span class="tn">3000</span>:
+    <span class="tk">get</span> <span class="ts">"/"</span>:
+        <span class="tk">respond</span> &#123;<span class="ts">"message"</span>: <span class="ts">"Hello!"</span>&#125;</code></pre>
+            </div>
+        </section>
+
+        <section class="requirements">
+            <h2>Requirements</h2>
+            <div class="req-grid-alt">
+                <div class="req-item-alt">
+                    <span class="check">✓</span>
+                    <span>Node.js 14+ <small>(to run output)</small></span>
+                </div>
+                <div class="req-item-alt">
+                    <span class="check">✓</span>
+                    <span>macOS / Linux / WSL</span>
+                </div>
+                <div class="req-item-alt">
+                    <span class="check">✓</span>
+                    <span>curl or wget</span>
+                </div>
+                <div class="req-item-alt">
+                    <span class="check">✓</span>
+                    <span>Rust <small>(auto-installs if needed)</small></span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <div class="footer-left">
+                <a href="/" class="footer-brand">
+                    <img src="/harbor.png" alt="" class="footer-icon" />
+                    Harbor
+                </a>
+                <p>&copy; 2026 Harbor</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <a href="/#features">Features</a>
+                    <a href="/#syntax">Syntax</a>
+                    <a href="/#get-started">Get started</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <a href="/docs/">Documentation</a>
+                    <a href="https://github.com/gradykorchinski-ship-it/Harbor"
+                        >GitHub</a
+                    >
+                    <a
+                        href="https://github.com/gradykorchinski-ship-it/Harbor/releases"
+                        >Releases</a
+                    >
+                </div>
+            </div>
+        </div>
+    </footer>
+</Layout>
+
+<style>
+    /* ── Nav ── */
+    .nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--bg);
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+        display: flex;
+        align-items: center;
+        height: 80px;
+        gap: 32px;
+    }
+
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        font-size: 15px;
+        color: var(--text);
+    }
+
+    .nav-icon {
+        height: 48px;
+        width: auto;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 24px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+        color: var(--text-secondary);
+        transition: color 120ms;
+    }
+
+    .nav-links a:hover {
+        color: var(--text);
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-left: auto;
+    }
+
+    .nav-github {
+        color: var(--text-secondary);
+        display: flex;
+        transition: color 120ms;
+    }
+
+    .nav-github:hover {
+        color: var(--text);
+    }
+
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 16px;
+        background: var(--accent);
+        color: var(--accent-text);
+        font-size: 14px;
+        font-weight: 600;
+        border-radius: var(--radius);
+        transition: background 120ms;
+    }
+
+    .btn-primary:hover {
+        background: var(--accent-hover);
+    }
+
+    /* ── Hero ── */
+    .hero {
+        text-align: center;
+        padding: 64px 0 48px;
+    }
+
+    .hero-logo {
+        font-family: var(--font-mono);
+        font-size: 14px;
+        color: var(--accent);
+        white-space: pre;
+        line-height: 1.3;
+        margin-bottom: 24px;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 8px;
+    }
+
+    .hero h1 span {
+        color: var(--accent);
+    }
+
+    .hero p {
+        font-size: 1.125rem;
+        color: var(--text-secondary);
+        max-width: 520px;
+        margin: 0 auto;
+    }
+
+    /* ── Install ── */
+    .install-page {
+        max-width: 800px !important;
+    }
+
+    .install-section {
+        margin-bottom: 64px;
+    }
+
+    .install-label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-tertiary);
+        margin-bottom: 12px;
+        font-weight: 600;
+    }
+
+    .tabs {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+    }
+
+    .tab {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text-secondary);
+        padding: 6px 16px;
+        border-radius: var(--radius);
+        font-size: 14px;
+        font-family: var(--font-mono);
+        cursor: pointer;
+        transition: all 120ms;
+    }
+
+    .tab:hover {
+        border-color: var(--border-hover);
+        color: var(--text);
+    }
+
+    .tab.active {
+        background: var(--surface);
+        border-color: var(--accent);
+        color: var(--text);
+    }
+
+    .tab-content {
+        display: none;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    .install-box {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 16px 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: var(--font-mono);
+        font-size: 14px;
+        cursor: pointer;
+        transition: border-color 120ms;
+    }
+
+    .install-box:hover {
+        border-color: var(--border-hover);
+    }
+
+    .prompt {
+        color: var(--accent);
+        user-select: none;
+    }
+
+    .install-box code {
+        flex: 1;
+        color: var(--text-secondary);
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+
+    .copy-btn {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        color: var(--text-tertiary);
+        padding: 4px 10px;
+        border-radius: var(--radius);
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 120ms;
+    }
+
+    .copy-btn:hover {
+        color: var(--text-secondary);
+        border-color: var(--border-hover);
+    }
+
+    .copy-btn.copied {
+        color: var(--accent);
+        border-color: var(--accent);
+    }
+
+    .alt-methods {
+        margin-top: 16px;
+    }
+
+    .alt-methods summary {
+        font-size: 13px;
+        color: var(--text-tertiary);
+        cursor: pointer;
+    }
+
+    .alt-grid {
+        display: grid;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .alt-box {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        padding: 12px 16px;
+        border-radius: var(--radius-lg);
+    }
+
+    .alt-box .label {
+        font-size: 11px;
+        text-transform: uppercase;
+        color: var(--text-tertiary);
+        margin-bottom: 4px;
+    }
+
+    .alt-box code {
+        font-size: 13px;
+        color: var(--text-secondary);
+        font-family: var(--font-mono);
+    }
+
+    /* ── Features ── */
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-bottom: 64px;
+    }
+
+    .feature-card-alt {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        padding: 24px;
+        border-radius: var(--radius-lg);
+    }
+
+    .feature-card-alt .icon {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+
+    .feature-card-alt h3 {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+
+    .feature-card-alt p {
+        font-size: 14px;
+        color: var(--text-secondary);
+    }
+
+    /* ── Code Preview ── */
+    .code-preview {
+        margin-bottom: 64px;
+    }
+
+    .code-preview h2 {
+        margin-bottom: 24px;
+    }
+
+    .code-block-fancy {
+        background: var(--bg-secondary);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+    }
+
+    .code-header-fancy {
+        background: var(--surface);
+        padding: 10px 16px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: var(--text-tertiary);
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        margin-right: 6px;
+    }
+
+    .dot.r {
+        background: #ff5f56;
+    }
+    .dot.y {
+        background: #ffbd2e;
+    }
+    .dot.g {
+        background: #27c93f;
+    }
+
+    .code-block-fancy pre {
+        padding: 24px;
+        margin: 0;
+    }
+
+    /* ── Requirements ── */
+    .requirements {
+        margin-bottom: 64px;
+    }
+
+    .requirements h2 {
+        margin-bottom: 24px;
+    }
+
+    .req-grid-alt {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .req-item-alt {
+        background: var(--surface);
+        padding: 12px 20px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 14px;
+    }
+
+    .req-item-alt .check {
+        color: var(--accent);
+        font-weight: bold;
+    }
+
+    .req-item-alt small {
+        color: var(--text-tertiary);
+        margin-left: 4px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+        border-top: 1px solid var(--border);
+        padding: 48px 0;
+    }
+
+    .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 64px;
+    }
+
+    .footer-brand {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+        font-size: 14px;
+        color: var(--text);
+        margin-bottom: 8px;
+    }
+
+    .footer-icon {
+        height: 16px;
+        width: auto;
+    }
+
+    .footer-left p {
+        font-size: 13px;
+        color: var(--text-tertiary);
+    }
+
+    .footer-links {
+        display: flex;
+        gap: 64px;
+    }
+
+    .footer-col h4 {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 12px;
+    }
+
+    .footer-col a {
+        display: block;
+        font-size: 13px;
+        color: var(--text-tertiary);
+        padding: 3px 0;
+        transition: color 120ms;
+    }
+
+    .footer-col a:hover {
+        color: var(--text);
+    }
+
+    @media (max-width: 768px) {
+        .features-grid,
+        .req-grid-alt {
+            grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+            font-size: 2.25rem;
+        }
+
+        .footer-inner {
+            flex-direction: column;
+            gap: 32px;
+        }
+    }
+
+    .hero-img {
+        min-width: 70vh;
+        background-size: cover;
+        background-position: center;
+    }
+</style>
+
+<script>
+    // Tab switching
+    const tabs = document.querySelectorAll(".tab");
+    const contents = document.querySelectorAll(".tab-content");
+
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            const target = tab.getAttribute("data-tab");
+
+            tabs.forEach((t) => t.classList.remove("active"));
+            contents.forEach((c) => c.classList.remove("active"));
+
+            tab.classList.add("active");
+            document.getElementById(`tab-${target}`)?.classList.add("active");
+        });
+    });
+
+    // Copy to clipboard
+    const installBoxes = document.querySelectorAll(".install-box");
+    installBoxes.forEach((box) => {
+        box.addEventListener("click", () => {
+            const command = box.getAttribute("data-command");
+            const btn = box.querySelector(".copy-btn");
+
+            if (command && btn) {
+                navigator.clipboard.writeText(command).then(() => {
+                    const originalText = btn.textContent;
+                    btn.textContent = "copied!";
+                    btn.classList.add("copied");
+
+                    setTimeout(() => {
+                        btn.textContent = originalText;
+                        btn.classList.remove("copied");
+                    }, 2000);
+                });
+            }
+        });
+    });
+</script>

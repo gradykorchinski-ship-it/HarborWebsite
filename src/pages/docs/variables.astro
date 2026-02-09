@@ -1,0 +1,87 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Variables & Types" active="/docs/variables/">
+    <h1>Variables & Types</h1>
+    <p>
+        Harbor uses bare assignment for variables and has two value types: strings
+        and numbers.
+    </p>
+
+    <h2>Variable assignment</h2>
+    <p>
+        Variables are created by assigning a value to a name. There is no
+        <code>let</code>, <code>var</code>, <code>const</code>, or <code>set</code>
+        keyword. Just write the name, an equals sign, and the value.
+    </p>
+    <pre><code><span class="tv">x</span> = <span class="tn">10</span>
+<span class="tv">name</span> = <span class="ts">"Harbor"</span>
+<span class="tv">port</span> = <span class="tn">8080</span></code></pre>
+
+    <p>Variables can be reassigned at any time:</p>
+    <pre><code><span class="tv">x</span> = <span class="tn">10</span>
+<span class="tv">x</span> = <span class="tn">20</span>
+<span class="tk">print</span>(<span class="tv">x</span>)  <span class="tc">// not yet supported, but conceptually: prints 20</span></code></pre>
+
+    <div class="note">
+        <p>
+            <strong>Note:</strong> There are no type annotations. The type of a
+            variable is determined by the value assigned to it.
+        </p>
+    </div>
+
+    <h2>Strings</h2>
+    <p>
+        String literals use double quotes. Single quotes are not supported.
+    </p>
+    <pre><code><span class="tv">greeting</span> = <span class="ts">"Hello, world!"</span>
+<span class="tv">path</span> = <span class="ts">"/api/users"</span></code></pre>
+
+    <p>Strings can be concatenated with the <code>+</code> operator:</p>
+    <pre><code><span class="tv">base</span> = <span class="ts">"Hello, "</span>
+<span class="tv">who</span> = <span class="ts">"Harbor"</span>
+<span class="tv">message</span> = <span class="tv">base</span> + <span class="tv">who</span></code></pre>
+
+    <p>
+        There are no escape sequences (like <code>\n</code> or <code>\t</code>)
+        and no string interpolation.
+    </p>
+
+    <h2>Numbers</h2>
+    <p>
+        Number literals are integers in the source code, but are stored internally
+        as 64-bit floating point values.
+    </p>
+    <pre><code><span class="tv">port</span> = <span class="tn">8080</span>
+<span class="tv">count</span> = <span class="tn">42</span></code></pre>
+
+    <p>Numbers can be added with the <code>+</code> operator:</p>
+    <pre><code><span class="tv">a</span> = <span class="tn">10</span>
+<span class="tv">b</span> = <span class="tn">20</span>
+<span class="tv">sum</span> = <span class="tv">a</span> + <span class="tv">b</span></code></pre>
+
+    <h2>Other types</h2>
+    <p>
+        Harbor does not have booleans, arrays, null, or user-defined objects.
+        The <code>req</code> object inside route handlers is an internal object
+        type — see <a href="/docs/request/">Request Object</a>.
+    </p>
+
+    <h2>Scope</h2>
+    <p>
+        Variables declared at the top level are global. Variables declared inside
+        a function are local to that function. Function parameters are also local.
+    </p>
+
+    <div class="page-nav">
+        <a href="/docs/getting-started/">
+            <span class="label">Previous</span>
+            Getting Started
+        </a>
+        <a href="/docs/operators/" class="next">
+            <span class="label">Next</span>
+            Operators
+        </a>
+    </div>
+</DocsLayout>

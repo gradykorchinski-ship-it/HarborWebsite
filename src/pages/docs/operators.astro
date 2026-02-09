@@ -1,0 +1,86 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Operators" active="/docs/operators/">
+    <h1>Operators</h1>
+    <p>
+        Harbor has a minimal set of operators. Currently, only addition/concatenation
+        and member access are supported.
+    </p>
+
+    <h2>Addition (<code>+</code>)</h2>
+    <p>
+        The <code>+</code> operator works on two numbers (addition) or two strings
+        (concatenation).
+    </p>
+    <pre><code><span class="tc">// Number addition</span>
+<span class="tv">result</span> = <span class="tn">10</span> + <span class="tn">20</span>
+
+<span class="tc">// String concatenation</span>
+<span class="tv">message</span> = <span class="ts">"hello "</span> + <span class="ts">"world"</span></code></pre>
+
+    <p>
+        Mixing types (e.g. a string and a number) returns <code>None</code>
+        internally. There is no automatic type coercion.
+    </p>
+
+    <h2>Assignment (<code>=</code>)</h2>
+    <p>
+        The equals sign assigns a value to a variable. See
+        <a href="/docs/variables/">Variables & Types</a>.
+    </p>
+    <pre><code><span class="tv">x</span> = <span class="tn">42</span></code></pre>
+
+    <h2>Member access (<code>.</code>)</h2>
+    <p>
+        The dot operator accesses a field on an object. This is primarily used
+        with the <code>req</code> object inside route handlers.
+    </p>
+    <pre><code><span class="tk">get</span> <span class="ts">"/info"</span> &#123;
+    <span class="tk">respond</span> <span class="tv">req</span>.<span class="tv">path</span>
+&#125;</code></pre>
+
+    <p>
+        If the base value is not an object, or the field doesn't exist, the
+        result is <code>None</code>.
+    </p>
+
+    <h2>What's not supported</h2>
+    <p>
+        The following operators do not exist in Harbor:
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Operators</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Arithmetic</td>
+                <td><code>-</code>, <code>*</code>, <code>/</code>, <code>%</code></td>
+            </tr>
+            <tr>
+                <td>Comparison</td>
+                <td><code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code></td>
+            </tr>
+            <tr>
+                <td>Logical</td>
+                <td><code>&amp;&amp;</code>, <code>||</code>, <code>!</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-nav">
+        <a href="/docs/variables/">
+            <span class="label">Previous</span>
+            Variables & Types
+        </a>
+        <a href="/docs/functions/" class="next">
+            <span class="label">Next</span>
+            Functions
+        </a>
+    </div>
+</DocsLayout>

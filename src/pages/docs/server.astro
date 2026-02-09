@@ -1,0 +1,77 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Server Blocks" active="/docs/server/">
+    <h1>Server Blocks</h1>
+    <p>
+        The <code>server</code> keyword starts an HTTP server. It's a top-level
+        statement that binds to a port and defines route handlers.
+    </p>
+
+    <h2>Syntax</h2>
+    <pre><code><span class="tk">server</span> <span class="tn">8080</span> &#123;
+    <span class="tc">// route handlers go here</span>
+&#125;</code></pre>
+
+    <p>
+        The <code>server</code> keyword is followed by a port number and a block
+        containing route definitions.
+    </p>
+
+    <h2>Behavior</h2>
+    <ul>
+        <li>The server binds to <code>127.0.0.1:&lt;port&gt;</code></li>
+        <li>On startup, it prints <code>Harbor server running on http://127.0.0.1:&lt;port&gt;</code></li>
+        <li>The server uses Hyper and Tokio under the hood for async HTTP</li>
+        <li>Unmatched routes return a <code>404 Not Found</code> response</li>
+    </ul>
+
+    <div class="note">
+        <p>
+            <strong>Important:</strong> When the interpreter reaches a
+            <code>server</code> statement, it starts the server and blocks. No
+            statements after the <code>server</code> block will execute.
+        </p>
+    </div>
+
+    <h2>Running code before the server</h2>
+    <p>
+        Place any setup logic — variable assignments, function definitions, print
+        statements — before the <code>server</code> block:
+    </p>
+    <pre><code><span class="tv">version</span> = <span class="ts">"1.0"</span>
+<span class="tk">print</span>(<span class="ts">"Starting server..."</span>)
+
+<span class="tk">fn</span> <span class="tv">make_greeting</span>(<span class="tv">name</span>) &#123;
+    <span class="ts">"Hello, "</span> + <span class="tv">name</span>
+&#125;
+
+<span class="tk">server</span> <span class="tn">3000</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/"</span> &#123;
+        <span class="tk">respond</span> <span class="tv">make_greeting</span>(<span class="ts">"visitor"</span>)
+    &#125;
+&#125;</code></pre>
+
+    <h2>Port</h2>
+    <p>
+        The port must be a number literal. It cannot be a variable or expression.
+    </p>
+    <pre><code><span class="tc">// ✓ This works</span>
+<span class="tk">server</span> <span class="tn">8080</span> &#123; ... &#125;
+
+<span class="tc">// ✗ This does not work</span>
+<span class="tv">port</span> = <span class="tn">8080</span>
+<span class="tk">server</span> <span class="tv">port</span> &#123; ... &#125;</code></pre>
+
+    <div class="page-nav">
+        <a href="/docs/functions/">
+            <span class="label">Previous</span>
+            Functions
+        </a>
+        <a href="/docs/routes/" class="next">
+            <span class="label">Next</span>
+            Routes
+        </a>
+    </div>
+</DocsLayout>

@@ -1,0 +1,120 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Examples" active="/docs/examples/">
+    <h1>Examples</h1>
+    <p>
+        Complete Harbor programs demonstrating the language's features.
+    </p>
+
+    <h2>Hello World</h2>
+    <p>The simplest Harbor program.</p>
+    <pre><code><span class="tk">print</span>(<span class="ts">"Hello, world!"</span>)</code></pre>
+
+    <h2>Variables and functions</h2>
+    <p>Defining variables, a function, and printing the result.</p>
+    <pre><code><span class="tv">x</span> = <span class="tn">10</span>
+<span class="tv">y</span> = <span class="tn">20</span>
+
+<span class="tk">fn</span> <span class="tv">add</span>(<span class="tv">a</span>, <span class="tv">b</span>) &#123;
+    <span class="tv">a</span> + <span class="tv">b</span>
+&#125;
+
+<span class="tk">print</span>(<span class="tv">add</span>(<span class="tv">x</span>, <span class="tv">y</span>))</code></pre>
+    <p>Output: <code>30</code></p>
+
+    <h2>String concatenation</h2>
+    <p>Building strings from pieces.</p>
+    <pre><code><span class="tv">first</span> = <span class="ts">"Harbor"</span>
+<span class="tv">second</span> = <span class="ts">" is cool"</span>
+<span class="tk">print</span>(<span class="tv">first</span> + <span class="tv">second</span>)</code></pre>
+    <p>Output: <code>Harbor is cool</code></p>
+
+    <h2>Basic HTTP server</h2>
+    <p>A server with a single route.</p>
+    <pre><code><span class="tk">server</span> <span class="tn">8080</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/hello"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"Hello, world!"</span>
+    &#125;
+&#125;</code></pre>
+    <pre><code>$ curl http://127.0.0.1:8080/hello
+Hello, world!</code></pre>
+
+    <h2>Multi-route server</h2>
+    <p>A server with several endpoints.</p>
+    <pre><code><span class="tk">server</span> <span class="tn">3000</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"Welcome to Harbor"</span>
+    &#125;
+
+    <span class="tk">get</span> <span class="ts">"/health"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"ok"</span>
+    &#125;
+
+    <span class="tk">get</span> <span class="ts">"/version"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"0.2"</span>
+    &#125;
+&#125;</code></pre>
+
+    <h2>Using the request object</h2>
+    <p>Accessing request data inside route handlers.</p>
+    <pre><code><span class="tk">server</span> <span class="tn">8080</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/echo"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"You requested: "</span> + <span class="tv">req</span>.<span class="tv">path</span>
+    &#125;
+
+    <span class="tk">get</span> <span class="ts">"/method"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"Method: "</span> + <span class="tv">req</span>.<span class="tv">method</span>
+    &#125;
+&#125;</code></pre>
+
+    <h2>Functions with a server</h2>
+    <p>Defining helper functions to use in route handlers.</p>
+    <pre><code><span class="tk">fn</span> <span class="tv">greet</span>(<span class="tv">name</span>) &#123;
+    <span class="ts">"Hello, "</span> + <span class="tv">name</span> + <span class="ts">"!"</span>
+&#125;
+
+<span class="tk">server</span> <span class="tn">8080</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/alice"</span> &#123;
+        <span class="tk">respond</span> <span class="tv">greet</span>(<span class="ts">"Alice"</span>)
+    &#125;
+
+    <span class="tk">get</span> <span class="ts">"/bob"</span> &#123;
+        <span class="tk">respond</span> <span class="tv">greet</span>(<span class="ts">"Bob"</span>)
+    &#125;
+&#125;</code></pre>
+    <pre><code>$ curl http://127.0.0.1:8080/alice
+Hello, Alice!
+
+$ curl http://127.0.0.1:8080/bob
+Hello, Bob!</code></pre>
+
+    <h2>Setup before server start</h2>
+    <p>Running initialization code, then starting the server.</p>
+    <pre><code><span class="tv">app_name</span> = <span class="ts">"My App"</span>
+<span class="tv">version</span> = <span class="ts">"0.1"</span>
+
+<span class="tk">fn</span> <span class="tv">banner</span>() &#123;
+    <span class="tv">app_name</span> + <span class="ts">" v"</span> + <span class="tv">version</span>
+&#125;
+
+<span class="tk">print</span>(<span class="ts">"Starting "</span> + <span class="tv">banner</span>())
+
+<span class="tk">server</span> <span class="tn">4000</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/"</span> &#123;
+        <span class="tk">respond</span> <span class="tv">banner</span>()
+    &#125;
+&#125;</code></pre>
+    <p>Console output:</p>
+    <pre><code>Starting My App v0.1
+Harbor server running on http://127.0.0.1:4000</code></pre>
+
+    <div class="page-nav">
+        <a href="/docs/builtins/">
+            <span class="label">Previous</span>
+            Built-in Functions
+        </a>
+        <div></div>
+    </div>
+</DocsLayout>

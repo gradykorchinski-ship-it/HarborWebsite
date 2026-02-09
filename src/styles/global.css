@@ -1,0 +1,104 @@
+/* Harbor — Fluent-inspired design system */
+
+:root {
+  --bg: #1b1b1f;
+  --bg-secondary: #202024;
+  --surface: #27272b;
+  --surface-hover: #2e2e33;
+
+  --text: #ffffffde;
+  --text-secondary: #ffffffa3;
+  --text-tertiary: #ffffff6b;
+
+  --accent: #4ca6e8;
+  --accent-hover: #60b4f0;
+  --accent-text: #fff;
+
+  --border: #ffffff12;
+  --border-hover: #ffffff1a;
+
+  --font-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Cascadia Code', 'Consolas', 'Courier New', monospace;
+
+  --radius: 4px;
+  --radius-lg: 8px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  color: var(--text);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 { font-size: 2.5rem; letter-spacing: -0.02em; }
+h2 { font-size: 1.75rem; letter-spacing: -0.01em; }
+h3 { font-size: 1.125rem; }
+
+p {
+  color: var(--text-secondary);
+}
+
+code {
+  font-family: var(--font-mono);
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 40px;
+  }
+  h1 { font-size: 3rem; }
+}
+
+pre {
+  background: var(--bg);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.7;
+  overflow-x: auto;
+  tab-size: 2;
+}
+
+::selection {
+  background: rgba(76, 166, 232, 0.3);
+}

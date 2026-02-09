@@ -1,0 +1,115 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Routes" active="/docs/routes/">
+    <h1>Routes</h1>
+    <p>
+        Routes are defined inside a <code>server</code> block using the
+        <code>get</code> keyword. Each route maps a URL path to a handler.
+    </p>
+
+    <h2>Defining a route</h2>
+    <pre><code><span class="tk">server</span> <span class="tn">8080</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/hello"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"Hello, world!"</span>
+    &#125;
+&#125;</code></pre>
+
+    <p>
+        A route starts with the <code>get</code> keyword, followed by a string
+        literal for the path, and a block containing the handler body.
+    </p>
+
+    <h2>Multiple routes</h2>
+    <p>You can define multiple routes in a single server block:</p>
+    <pre><code><span class="tk">server</span> <span class="tn">8080</span> &#123;
+    <span class="tk">get</span> <span class="ts">"/"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"Home"</span>
+    &#125;
+
+    <span class="tk">get</span> <span class="ts">"/about"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"About page"</span>
+    &#125;
+
+    <span class="tk">get</span> <span class="ts">"/health"</span> &#123;
+        <span class="tk">respond</span> <span class="ts">"ok"</span>
+    &#125;
+&#125;</code></pre>
+
+    <h2>Path matching</h2>
+    <p>
+        Routes use exact string matching. The request path must match the
+        route path exactly. There are no wildcards, parameters, or pattern matching.
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Route</th>
+                <th>Request path</th>
+                <th>Match?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>/hello</code></td>
+                <td><code>/hello</code></td>
+                <td>Yes</td>
+            </tr>
+            <tr>
+                <td><code>/hello</code></td>
+                <td><code>/hello/</code></td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><code>/hello</code></td>
+                <td><code>/Hello</code></td>
+                <td>No</td>
+            </tr>
+            <tr>
+                <td><code>/</code></td>
+                <td><code>/</code></td>
+                <td>Yes</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>The <code>respond</code> keyword</h2>
+    <p>
+        <code>respond</code> sends an HTTP response from inside a route handler.
+        It takes a single expression that must evaluate to a string.
+    </p>
+    <pre><code><span class="tk">get</span> <span class="ts">"/greet"</span> &#123;
+    <span class="tv">name</span> = <span class="ts">"Harbor"</span>
+    <span class="tk">respond</span> <span class="ts">"Hello from "</span> + <span class="tv">name</span>
+&#125;</code></pre>
+
+    <p>
+        The response is returned with a <code>200 OK</code> status. There is
+        currently no way to set custom status codes or headers.
+    </p>
+
+    <h2>Unmatched routes</h2>
+    <p>
+        If a request doesn't match any defined route, the server returns a
+        <code>404 Not Found</code> response automatically.
+    </p>
+
+    <h2>HTTP methods</h2>
+    <p>
+        Only <code>GET</code> routes are currently supported. There is no
+        <code>post</code>, <code>put</code>, <code>delete</code>, or
+        <code>patch</code> keyword.
+    </p>
+
+    <div class="page-nav">
+        <a href="/docs/server/">
+            <span class="label">Previous</span>
+            Server Blocks
+        </a>
+        <a href="/docs/request/" class="next">
+            <span class="label">Next</span>
+            Request Object
+        </a>
+    </div>
+</DocsLayout>

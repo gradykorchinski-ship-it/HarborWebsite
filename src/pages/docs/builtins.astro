@@ -1,0 +1,84 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+---
+
+<DocsLayout title="Built-in Functions" active="/docs/builtins/">
+    <h1>Built-in Functions</h1>
+    <p>
+        Harbor has one built-in function: <code>print</code>. The
+        <code>respond</code> keyword also uses call syntax but is a language
+        keyword, not a function.
+    </p>
+
+    <h2><code>print(value)</code></h2>
+    <p>
+        Prints a value to standard output followed by a newline.
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th>Parameter</th>
+                <th>Type</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>value</code></td>
+                <td>String or Number</td>
+                <td>The value to print</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <pre><code><span class="tk">print</span>(<span class="ts">"Hello, world!"</span>)
+<span class="tk">print</span>(<span class="tn">42</span>)
+<span class="tk">print</span>(<span class="tn">10</span> + <span class="tn">20</span>)</code></pre>
+
+    <p>Output:</p>
+    <pre><code>Hello, world!
+42
+30</code></pre>
+
+    <p>
+        <code>print</code> takes exactly one argument. It works with strings and
+        numbers. Passing other internal types (like <code>None</code>) may produce
+        no output.
+    </p>
+
+    <h2><code>respond</code></h2>
+    <p>
+        While <code>respond</code> uses function-call-like syntax, it is a
+        language keyword. It can only be used inside route handlers.
+    </p>
+    <pre><code><span class="tk">get</span> <span class="ts">"/"</span> &#123;
+    <span class="tk">respond</span> <span class="ts">"OK"</span>
+&#125;</code></pre>
+
+    <p>
+        <code>respond</code> sends its argument as the HTTP response body with a
+        <code>200 OK</code> status. The argument must evaluate to a string.
+    </p>
+
+    <p>
+        Both of these forms are valid:
+    </p>
+    <pre><code><span class="tk">respond</span> <span class="ts">"hello"</span>
+<span class="tk">respond</span>(<span class="ts">"hello"</span>)</code></pre>
+
+    <p>
+        See <a href="/docs/routes/">Routes</a> for more details on using
+        <code>respond</code> in handlers.
+    </p>
+
+    <div class="page-nav">
+        <a href="/docs/request/">
+            <span class="label">Previous</span>
+            Request Object
+        </a>
+        <a href="/docs/examples/" class="next">
+            <span class="label">Next</span>
+            Examples
+        </a>
+    </div>
+</DocsLayout>
